@@ -1,0 +1,8 @@
+SOURCES/gcc-12.2.1-20221121.tar.xz
+SOURCES/gmp-6.1.0.tar.bz2
+SOURCES/isl-0.24.tar.bz2
+SOURCES/mpc-1.0.3.tar.gz
+SOURCES/mpfr-3.1.4.tar.bz2
+SOURCES/newlib-cygwin-a8526cb52bedabd4d6ba4b227a5185627f871aa1.tar.xz
+SOURCES/nvptx-tools-472b6e78b3ba918d727698f79911360b7c808247.tar.xz
+SOURCES/doxygen-1.8.0.src.tar.gz
