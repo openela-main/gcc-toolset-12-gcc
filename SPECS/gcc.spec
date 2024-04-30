@@ -147,7 +147,7 @@
 Summary: GCC version 12
 Name: %{?scl_prefix}gcc
 Version: %{gcc_version}
-Release: %{gcc_release}.4%{?dist}
+Release: %{gcc_release}.6%{?dist}
 # libgcc, libgfortran, libgomp, libstdc++ and crtstuff have
 # GCC Runtime Exception.
 License: GPLv3+ and GPLv3+ with exceptions and GPLv2+ with exceptions and LGPLv2+ and BSD
@@ -193,10 +193,8 @@ URL: http://gcc.gnu.org
 # Need binutils which support -plugin
 # Need binutils which support .loc view >= 2.30
 # Need binutils which support --generate-missing-build-notes=yes >= 2.31
-%if 0%{?scl:1}
 BuildRequires: %{?scl_prefix}binutils >= 2.31
 BuildRequires: %{?scl_prefix}gdb >= 7.4.50
-%endif
 # While gcc doesn't include statically linked binaries, during testing
 # -static is used several times.
 BuildRequires: glibc-static
@@ -351,6 +349,7 @@ Patch11: gcc12-d-shared-libphobos.patch
 Patch12: gcc12-pr107468.patch
 Patch15: gcc12-static-libquadmath.patch
 Patch16: gcc12-FMA-chains.patch
+Patch17: gcc12-pr113960.patch
 
 Patch100: gcc12-fortran-fdec-duplicates.patch
 Patch101: gcc12-fortran-flogical-as-integer.patch
@@ -731,6 +730,7 @@ so that there cannot be any synchronization problems.
 %patch12 -p0 -b .pr107468~
 %patch15 -p0 -b .static-libquadmath~
 %patch16 -p1 -b .fma~
+%patch17 -p1 -b .pr113960~
 
 %if 0%{?rhel} >= 6
 %patch100 -p1 -b .fortran-fdec-duplicates~
@@ -2990,6 +2990,13 @@ fi
 %endif
 
 %changelog
+* Wed Apr  3 2024 Marek Polacek <polacek@redhat.com> 12.2.1-7.6
+- bump NVR (RHEL-30832)
+
+* Thu Mar 28 2024 Marek Polacek <polacek@redhat.com> 12.2.1-7.5
+- fix conditions for using memcmp in
+  std::lexicographical_compare_three_way (PR libstdc++/113960, RHEL-30832)
+
 * Fri Feb 10 2023 Marek Polacek <polacek@redhat.com> 12.2.1-7.4
 - avoid fma_chain for -march=alderlake and sapphirerapids (#2168919)
 
